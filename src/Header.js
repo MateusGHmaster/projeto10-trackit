@@ -1,4 +1,5 @@
-import appName from './trackIt.png';
+import ProfilePic from './ProfilePic';
+import TopAppName from './TopAppName';
 import styled from "styled-components";
 
 export default function Header () {
@@ -8,7 +9,8 @@ export default function Header () {
     return (
 
         <HeaderContainer>
-            <img src={appName} alt={'navbar-app-name'} height={30} width={90}/>
+            <TopAppName />
+            <ProfilePic />
         </HeaderContainer>
 
     );
