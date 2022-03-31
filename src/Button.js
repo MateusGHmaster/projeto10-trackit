@@ -2,12 +2,12 @@
 import styled from "styled-components";
 
 const Button = styled.button`
-  height: 40px;
+  height: 45px;
   width: 100%;
-  background-color: ${(props) => typeof props.active !== 'boolean' || props.active ? "#22A63F" : "#888"};
+  background-color: ${(props) => typeof props.active !== 'boolean' || props.active ? "#52B6FF" : "#888"};
   color: #FFFFFF;
   font-family: 'Lexend Deca', sans-serif;
-  padding: 14px;
+  padding: 36px;
   ${(props) => !props.noMargin && "margin-bottom: 10px;"}
   border-radius: 4px;
   border: none;
@@ -15,6 +15,8 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 `;
 
 export default Button;
