@@ -10,16 +10,16 @@ export default function App () {
     return (
         
         <BrowserRouter>
-            <Header />
+            {/* <Header /> */}
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/habits" element={<Habits />} />
-                <Route path="/success" element={<Today />} />
+                <Route path="/today" element={<Today />} />
                 <Route path="/history" element={<History />} />
             </Routes>
-            <Footer />
+            {/* <Footer /> */}
         </BrowserRouter>
 
     );
