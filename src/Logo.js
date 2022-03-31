@@ -1,5 +1,5 @@
 import logo from './logo.png';
-import trackit from './trackIt.png';
+import appName from './trackIt.png';
 import styled from "styled-components";
 
 export default function Logo () {
@@ -7,7 +7,7 @@ export default function Logo () {
 
         <AppLogo>
             <img src={logo} alt={'logo'} height={110} width={180}/>
-            <img src={trackit} alt={'app-name'} height={60} width={180}/>
+            <img src={appName} alt={'app-name'} height={60} width={180}/>
         </AppLogo>
 
     );

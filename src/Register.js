@@ -32,8 +32,8 @@ export default function Register () {
             console.log(data);
             navigate('/');
         })
-        promise.catch (error => {
-            console.log(error);
+        promise.catch (err => {
+            console.log(err);
             alert('Ocorreu um erro, e sentimos muito por isso. Por favor, tente novamente.');
             refreshPage();
         })
