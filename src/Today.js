@@ -18,8 +18,8 @@ export default function Today () {
 
 const TodayContainer = styled.div`
 
-    min-height: 100vh;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     padding: 31px;
     display: flex;
     justify-content: center;
