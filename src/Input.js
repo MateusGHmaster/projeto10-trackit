@@ -13,11 +13,11 @@ const Input = styled.input`
   border-radius: 4px;
 
   ::placeholder {
+    font-size: 20px;
     color: #888;
     font-family: 'Lexend Deca', sans-serif;
   }
 
-  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 `;
 
 export default Input;

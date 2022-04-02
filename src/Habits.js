@@ -1,6 +1,7 @@
 import Header from './Header';
 import Title from './Title';
 import Habit from './Habit';
+import Footer from './Footer';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import './components/Habits.css';
@@ -96,37 +97,39 @@ export default function Habits () {
 
     return (
 
-        <HabitsContainer>
-            <Header />
-                <section className={'habits-header'}>
-                    <Title />
-                    <Button onClick={(() => {setVisibleHabit(!visibleHabit)})}>
-                        <Icon>+</Icon>
-                    </Button>
-                </section>
-                <HabitList>{showHabits()}</HabitList>
-                {visibleHabit === true && (
-
-                    <section className='habit-div'>
-                        <input className={'habit-name'} type={'text'} placeholder={'nome do hábito'} value={habitName} onChange={(e) => setHabitName(e.target.value)}/>
-                        <div className='new-week-days'>
-                            <>
-                                {weekDays.map(day => (
-                                    <>
-                                        <div className='week-day' onClick={() => daySelection(day.id)}>{day.name}</div>
-                                    </>
-                                ))}
-                            </>
-                        </div>
-                        <section className={'action-habit-button'}>
-                            <button className={'cancel-habit'}>Cancelar</button>
-                            <button className={'save-habit'} onClick={createHabit}>Salvar</button>
-                        </section>
+        <>
+            <HabitsContainer>
+                <Header />
+                    <section className={'habits-header'}>
+                        <Title />
+                        <Button onClick={(() => {setVisibleHabit(!visibleHabit)})}>
+                            <Icon>+</Icon>
+                        </Button>
                     </section>
+                    <HabitList>{showHabits()}</HabitList>
+                    {visibleHabit === true && (
 
-                )}
-        </HabitsContainer>
+                        <section className='habit-div'>
+                            <input className={'habit-name'} type={'text'} placeholder={'nome do hábito'} value={habitName} onChange={(e) => setHabitName(e.target.value)}/>
+                            <div className='new-week-days'>
+                                <>
+                                    {weekDays.map(day => (
+                                        <>
+                                            <div className='week-day' onClick={() => daySelection(day.id)}>{day.name}</div>
+                                        </>
+                                    ))}
+                                </>
+                            </div>
+                            <section className={'action-habit-button'}>
+                                <button className={'cancel-habit'}>Cancelar</button>
+                                <button className={'save-habit'} onClick={createHabit}>Salvar</button>
+                            </section>
+                        </section>
 
+                    )}
+            </HabitsContainer>
+            <Footer />
+        </>
     );
 }
 

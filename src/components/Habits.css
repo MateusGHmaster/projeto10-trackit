@@ -64,6 +64,7 @@
     border-radius: 4.63636px;
 
     font-family: 'Lexend Deca', sans-serif;
+    border:1px solid transparent;
     font-size: 16px;
     color: #FFFFFF;
 
@@ -76,6 +77,7 @@
     
     font-family: 'Lexend Deca', sans-serif;
     font-size: 16px;
+    border:1px solid transparent;
     
     color: #52B6FF;
 

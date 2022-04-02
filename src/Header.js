@@ -1,4 +1,3 @@
-/* import ProfilePic from './ProfilePic'; */
 import appName from './trackIt.png';
 
 import styled from "styled-components";

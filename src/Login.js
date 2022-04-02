@@ -46,20 +46,26 @@ export default function Login () {
 }
 
 const StyledLink = styled(Link)`
+
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #52B6FF;
+  font-family: 'Lexend Deca', sans-serif;
+
 `;
 
 const LoginContainer = styled.div`
+
   min-height: 100vh;
-  width: 100%;
-  padding: 31px;
+  width: 340px;
+  padding: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: #E5E5E5;
+  font-family: 'Lexend Deca', sans-serif;
+
 `;
