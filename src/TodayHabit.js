@@ -5,6 +5,7 @@ import { useState } from 'react';
 export default function Habit (props) {
     
     const [concluded, setConcluded] = useState(false);
+    let [count, setCount] = useState(0);
 
     return (
 
@@ -18,6 +19,12 @@ export default function Habit (props) {
             </Streak>
             <CheckList className={`check ${concluded ? 'checked' : ''}`} onClick={() => {
                     setConcluded(!concluded);
+                    concluded ? (
+                            setCount(count -= 1)
+                        ) : (
+                            setCount(count += 1)
+                    );
+                    console.log(count);
                 }}>
                     <Check>✓</Check>
             </CheckList>
