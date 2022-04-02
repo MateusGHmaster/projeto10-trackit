@@ -1,16 +1,57 @@
 import styled from "styled-components";
 import Header from "./Header";
 import Footer from "./Footer";
+import TodayHabit from "./TodayHabit";
 import Date from "./Date";
 import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 /* import './components/Today.css'; */
 
 
 export default function Today () {
 
-    const [concluded, setConcluded] = useState(false);
+    const [habits, setHabits] = useState ([]);
 
-    function checkConcludedHabits () {
+    const config = {
+
+        headers: { Authorization: `Bearer ${localStorage.getItem('trackItToken')}` }
+
+    };
+
+    useEffect (() => {
+        
+        getHabits();
+
+    }, []);
+
+    function getHabits () {
+
+        const promise = axios.get ('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', config);
+        promise.then (response => {
+            const {data} = response;
+            setHabits(data);
+        })
+        promise.catch (err => {
+            console.log(err.response);
+            alert ('Algo deu errado. Por favor, tente novamente.');
+        });
+
+    }
+
+    function showHabits () {
+
+        if(habits.length > 0) {
+          return habits.map(habit => {
+            const { id, name, days } = habit;
+            return (
+                <>
+                    <TodayHabit id={id} name={name} days={days} />
+                </>
+            );
+          });
+        }
+        return <p className={'no-habits'}>Você não tem nenhum hábito cadastrado. Adicione um hábito para começar a trackear!</p>;
 
     }
 
@@ -23,6 +64,7 @@ export default function Today () {
                 <ConcludedHabits>Nenhum hábito concluído ainda</ConcludedHabits>
             </section>
             <TodayContainer>
+                <HabitList>{showHabits()}</HabitList>
             </TodayContainer>
             <Footer />
         </>
@@ -33,7 +75,7 @@ export default function Today () {
 const TodayContainer = styled.div`
 
     height: 100%;
-    margin-top: 50px;
+    margin-top: 15px;
     width: 375px;
     padding-top: 31px;
     padding-right 31px:
@@ -64,5 +106,14 @@ const ConcludedHabits = styled.div`
     font-size: 18px;
 
     color: #BABABA;
+
+`;
+
+const HabitList = styled.div`
+
+    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
 `;
