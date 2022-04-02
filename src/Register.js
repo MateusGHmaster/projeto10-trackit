@@ -55,21 +55,26 @@ export default function Register () {
 }
 
 const Container = styled.div`
-    min-height: 100vh;
-    width: 100%;
-    padding: 31px;
+    
+    margin-top: 50px;
+    margin-left: 7px;
+    height: 100%;
+    width: 375px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #E5E5E5;
+
 `;
 
 
 const StyledLink = styled(Link)`
+
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #52B6FF;
+    font-family: 'Lexend Deca', sans-serif;
+
 `;
