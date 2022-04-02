@@ -109,17 +109,19 @@ export default function Habits () {
 
                     <section className='habit-div'>
                         <input className={'habit-name'} type={'text'} placeholder={'nome do hábito'} value={habitName} onChange={(e) => setHabitName(e.target.value)}/>
-                        <div className='week-days'>
+                        <div className='new-week-days'>
                             <>
                                 {weekDays.map(day => (
                                     <>
                                         <div className='week-day' onClick={() => daySelection(day.id)}>{day.name}</div>
                                     </>
                                 ))}
-                                <button>Cancelar</button>
-                                <button onClick={createHabit}>Salvar</button>
                             </>
                         </div>
+                        <section className={'action-habit-button'}>
+                            <button className={'cancel-habit'}>Cancelar</button>
+                            <button className={'save-habit'} onClick={createHabit}>Salvar</button>
+                        </section>
                     </section>
 
                 )}
@@ -132,8 +134,9 @@ const HabitsContainer = styled.div`
 
     height: 100%;
     margin-top: 50px;
-    width: 100%;
-    padding: 31px;
+    width: 375px;
+    padding-top: 31px;
+    padding-right 31px:
 
 `;
 

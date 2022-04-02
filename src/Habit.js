@@ -33,12 +33,11 @@ export default function Habit (props) {
 
 const HabitContainer = styled.div`
 
-    width: 100vw;
+    width: 340px;
     height: 91px;
+    margin-left: 10px;
     padding-left: 14px;
     padding-right: 14px;
-    left: 17px;
-    top: 147px;
 
     background: #FFFFFF;
     border-radius: 5px;
