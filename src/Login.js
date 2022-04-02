@@ -7,7 +7,7 @@ import Input from "./Input";
 import Button from "./Button";
 import styled from "styled-components";
 
-export default function Login ({setToken}) {
+export default function Login () {
     
     const navigate = useNavigate ();
 
@@ -22,7 +22,6 @@ export default function Login ({setToken}) {
         const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', {email: email, password: password});
         promise.then (response => {
             const {data} = response;
-            /* setToken (data.token); */
             localStorage.setItem('trackItToken', data.token);
             navigate ('/today');
         });

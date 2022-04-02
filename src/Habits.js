@@ -1,6 +1,5 @@
 import Header from './Header';
 import Title from './Title';
-/* import HabitsBody from './HabitsBody'; */
 import Habit from './Habit';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -18,7 +17,7 @@ const weekDays = [
     {id: 6, name: 'S'}    
 ];
 
-export default function Habits ({token}) {
+export default function Habits () {
     
     const [habits, setHabits] = useState ([]);
     const [visibleHabit, setVisibleHabit] = useState (false);
@@ -57,7 +56,9 @@ export default function Habits ({token}) {
           return habits.map(habit => {
             const { id, name, days } = habit;
             return (
-              <Habit id={id} name={name} days={days} />
+                <>
+                    <Habit id={id} name={name} days={days} />
+                </>
             );
           });
         }
@@ -82,10 +83,12 @@ export default function Habits ({token}) {
         const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits',{name: habitName, days: selectedDays}, config);
         promise.then((response) => {
             console.log('Foi!');
+            const { data } = response;
+            console.log(data);
             getHabits();
         });
         promise.catch((err) =>{
-            console.log('Não foi!');
+            console.log(err);
         });
 
     }
@@ -94,24 +97,31 @@ export default function Habits ({token}) {
 
         <HabitsContainer>
             <Header />
-            <Title />
-            {visibleHabit == true && (
+                <Title />
+                <HabitList>{showHabits()}</HabitList>
+                {visibleHabit === true && (
 
-                <section className='habit-div'>
-                    <input className={'habit-name'} type={'text'} placeholder={'nome do hábito'} value={habitName} onChange={(e) => setHabitName(e.target.value)}/>
-                    <div className='week-days'>
-                    {weekDays.map(day => (
-                        <div className='week-day' onClick={() => daySelection(day.id)}>{day.name}</div>
-                    ))}
-                    </div>
-                    <button>Cancelar</button>
-                    <button onClick={createHabit}>Salvar</button>
-                </section>
+                    <section className='habit-div'>
+                        <input className={'habit-name'} type={'text'} placeholder={'nome do hábito'} value={habitName} onChange={(e) => setHabitName(e.target.value)}/>
+                        <div className='week-days'>
+                            <>
+                                {weekDays.map(day => (
+                                    <>
+                                        <div className='week-day' onClick={() => daySelection(day.id)}>{day.name}</div>
+                                    </>
+                                ))}
+                                <button>Cancelar</button>
+                                <button onClick={createHabit}>Salvar</button>
+                            </>
+                        </div>
+                    </section>
 
-            )} 
+                )}
             
-            {showHabits()}
-            <button onClick={(() => {setVisibleHabit(!visibleHabit)})}>+</button>
+            
+            <Button onClick={(() => {setVisibleHabit(!visibleHabit)})}>
+                <Icon>+</Icon>
+            </Button>
         </HabitsContainer>
 
     );
@@ -123,9 +133,49 @@ const HabitsContainer = styled.div`
     margin-top: 50px;
     width: 100vw;
     padding: 31px;
-    /* display: flex;
+
+`;
+
+const HabitList = styled.div`
+
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+`;
+
+const Button = styled.div`
+
+    width: 40px;
+    height: 35px;
+    left: 317px;
+    top: 92px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center; */
-    background-color: #E5E5E5;
+
+    background: #52B6FF;
+    border-radius: 4.63636px;
+
+`;
+
+const Icon = styled.div`
+
+    width: 16px;
+    height: 34px;
+    left: 329px;
+    top: 91px;
+
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26.976px;
+    line-height: 34px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #FFFFFF;
 
 `;

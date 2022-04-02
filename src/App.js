@@ -4,6 +4,7 @@ import Menu from "./Menu";
 import Habits from "./Habits";
 import Today from "./Today";
 import History from "./History";
+import './style.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 

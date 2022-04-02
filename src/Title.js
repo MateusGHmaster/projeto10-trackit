@@ -12,7 +12,7 @@ export default function Title () {
 
 const PageTitle = styled.div`
 
-    font-family: 'Lexend Deca';
+    font-family: 'Lexend Deca', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 22.976px;
@@ -21,7 +21,6 @@ const PageTitle = styled.div`
     height: 29px;
     left: 0;
     top: 0;
-    background-color: green;
 
     color: #126BA5;
 
