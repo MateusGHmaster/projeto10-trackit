@@ -1,3 +1,4 @@
+import './components/Habit.css';
 import styled from "styled-components";
 
 const weekDays = [
@@ -32,6 +33,14 @@ export default function Habit (props) {
 
 const HabitContainer = styled.div`
 
+    width: 100vw;
+    height: 91px;
+    padding-left: 14px;
+    padding-right: 14px;
+    left: 17px;
+    top: 147px;
 
+    background: #FFFFFF;
+    border-radius: 5px;
 
 `;

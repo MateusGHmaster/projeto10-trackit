@@ -12,6 +12,8 @@ export default function Title () {
 
 const PageTitle = styled.div`
 
+    margin-top: 15px;
+    margin-bottom: 15px;
     font-family: 'Lexend Deca', sans-serif;
     font-style: normal;
     font-weight: 400;

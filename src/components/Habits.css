@@ -1,0 +1,12 @@
+.habits-header {
+
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.no-habits {
+
+    font-family: 'Lexend Deca', sans-serif;
+
+}

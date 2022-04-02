@@ -3,6 +3,7 @@ import Title from './Title';
 import Habit from './Habit';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import './components/Habits.css';
 import styled from "styled-components";
 import axios from 'axios';
 
@@ -62,7 +63,7 @@ export default function Habits () {
             );
           });
         }
-        return <p>Você não tem nenhum hábito cadastrado. Adicione um hábito para começar a trackear!</p>;
+        return <p className={'no-habits'}>Você não tem nenhum hábito cadastrado. Adicione um hábito para começar a trackear!</p>;
 
     }
 
@@ -97,7 +98,12 @@ export default function Habits () {
 
         <HabitsContainer>
             <Header />
-                <Title />
+                <section className={'habits-header'}>
+                    <Title />
+                    <Button onClick={(() => {setVisibleHabit(!visibleHabit)})}>
+                        <Icon>+</Icon>
+                    </Button>
+                </section>
                 <HabitList>{showHabits()}</HabitList>
                 {visibleHabit === true && (
 
@@ -117,11 +123,6 @@ export default function Habits () {
                     </section>
 
                 )}
-            
-            
-            <Button onClick={(() => {setVisibleHabit(!visibleHabit)})}>
-                <Icon>+</Icon>
-            </Button>
         </HabitsContainer>
 
     );
@@ -129,16 +130,16 @@ export default function Habits () {
 
 const HabitsContainer = styled.div`
 
-    height: 100vh;
+    height: 100%;
     margin-top: 50px;
-    width: 100vw;
+    width: 100%;
     padding: 31px;
 
 `;
 
 const HabitList = styled.div`
 
-    background-color: white;
+    
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -147,12 +148,12 @@ const HabitList = styled.div`
 
 const Button = styled.div`
 
+    margin-top: 7px;
     width: 40px;
     height: 35px;
     left: 317px;
     top: 92px;
     display: flex;
-    align-items: center;
     justify-content: center;
 
     background: #52B6FF;
@@ -162,19 +163,14 @@ const Button = styled.div`
 
 const Icon = styled.div`
 
+    margin-top: 3px;
     width: 16px;
     height: 34px;
-    left: 329px;
-    top: 91px;
 
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
     font-size: 26.976px;
-    line-height: 34px;
-    /* identical to box height */
-
-    text-align: center;
 
     color: #FFFFFF;
 

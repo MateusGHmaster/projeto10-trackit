@@ -1,0 +1,47 @@
+
+.habit-title {
+
+    margin-top: 13px;
+    width: 208px;
+    height: 25px;
+    left: 32px;
+    top: 160px;
+    
+    font-family: 'Lexend Deca', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19.976px;
+    line-height: 25px;
+    
+    color: #666666;
+
+}
+
+.week-days {
+
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.week-day {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+    left: 36px;
+    top: 218px;
+    
+    background: #FFFFFF;
+    border: 1px solid #D5D5D5;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+    font-family: 'Lexend Deca', sans-serif;
+    color: #DBDBDB;
+
+}
