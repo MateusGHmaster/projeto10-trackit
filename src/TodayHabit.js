@@ -2,7 +2,7 @@ import './components/TodayHabit.css';
 import styled from "styled-components";
 import { useState } from 'react';
 
-export default function Habit (props) {
+export default function TodayHabit (props) {
     
     const [concluded, setConcluded] = useState(false);
     let [count, setCount] = useState(0);
