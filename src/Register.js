@@ -56,7 +56,7 @@ export default function Register () {
 
 const Container = styled.div`
     
-    margin-top: 50px;
+    margin-top: 75px;
     margin-left: 7px;
     height: 100%;
     width: 375px;
