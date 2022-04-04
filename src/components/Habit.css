@@ -2,8 +2,8 @@
 .habit-title {
 
     margin-top: 13px;
-    width: 208px;
-    height: 25px;
+    width: 340px;
+    height: fit-content;
     left: 32px;
     top: 160px;
     

@@ -1,19 +1,21 @@
 import appName from './components/TrackIt.png';
-import axios from 'axios';
 import './components/Header.css';
-
 import styled from "styled-components";
+import useAuth from './providers/useAuth';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header () {
     
     const [userPic, setUserPic] = useState ('');
-    
+    const { auth } = useAuth()
+    const navigate = useNavigate();
+
     return (
 
         <HeaderContainer>
             <TopBarAppName>
-                <img className={'top-bar-name'} src={appName} alt={'top-bar-name'}/>
+                <img className={'top-bar-name'} src={appName} alt={'top-bar-name'} onClick={() => navigate('/today')}/>
             </TopBarAppName>
             <UserPicture>
                 <img className={'user-pic'} src={''} alt={'user-profile-picture'}/>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import LoadingSpin from "react-loading-spin";
 import axios from "axios";
 import Logo from "./Logo";
 import Button from "./Button";
@@ -13,6 +14,7 @@ export default function Register () {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [pic, setPic] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -21,6 +23,8 @@ export default function Register () {
     }
 
     function registerNewUser () {
+        setLoading(true);
+        console.log(loading);
         const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up', {
             email: email,
             name: name,
@@ -28,11 +32,13 @@ export default function Register () {
             password: password
         });
         promise.then (response => {
+            setLoading(false);
             const {data} = response;
             console.log(data);
             navigate('/');
         })
         promise.catch (err => {
+            setLoading(false);
             console.log(err);
             alert('Ocorreu um erro, e sentimos muito por isso. Por favor, tente novamente.');
             refreshPage();
@@ -47,7 +53,13 @@ export default function Register () {
             <Input type='password' placeholder='senha' value={password} onChange={(e) => setPassword(e.target.value)}/>
             <Input type='text' placeholder='nome' value={name} onChange={(e) => setName(e.target.value)}/>
             <Input type='url' placeholder='foto' value={pic} onChange={(e) => setPic(e.target.value)}/>
-            <Button onClick={registerNewUser}>Cadastrar</Button>
+            <Button onClick={registerNewUser}>
+                {loading ? (<LoadingSpin primaryColor={'#FFFFFF'} secondaryColor={'transparent'} size={'35px'} width={8} />
+                    ) : (
+                        'Cadastrar'        
+                    ) 
+                }
+            </Button>
             <StyledLink to='/'>Já possui uma conta? Faça login!</StyledLink>
         </Container>
 

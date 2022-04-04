@@ -2,10 +2,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import LoadingSpin from "react-loading-spin";
 import Logo from "./Logo";
 import Input from "./Input";
 import Button from "./Button";
 import styled from "styled-components";
+import useAuth from "./providers/useAuth";
 
 export default function Login () {
     
@@ -13,19 +15,24 @@ export default function Login () {
 
     const [email, setEmail] = useState ('');
     const [password, setPassword] = useState ('');
+    const { auth } = useAuth();
+    const [loading, setLoading] = useState(false);
     
     function refreshPage() {
         window.location.reload(false);
     }
 
     function login () {
+        setLoading(true);
         const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', {email: email, password: password});
         promise.then (response => {
+            setLoading(false);
             const {data} = response;
             localStorage.setItem('trackItToken', data.token);
             navigate ('/today');
         });
         promise.catch (response => {
+            setLoading(false);
             console.log(response);
             alert('Houve um erro. Por favor, verifique seu email e senha.');
             refreshPage ();
@@ -38,7 +45,13 @@ export default function Login () {
             <Logo />
             <Input type={'text'} placeholder={'email'} value={email} onChange={(e) => setEmail(e.target.value)} />
             <Input type={'password'} placeholder={'senha'} value={password} onChange={(e) => setPassword(e.target.value)} />
-            <Button onClick={login}>Entrar</Button>
+            <Button onClick={login}>
+                {loading ? (<LoadingSpin primaryColor={'#FFFFFF'} secondaryColor={'transparent'} size={'35px'} width={8} />
+                    ) : (
+                        'Entrar'        
+                    ) 
+                }
+            </Button>
             <StyledLink to='/register'>Não tem uma conta? Cadastre-se!</StyledLink>
         </LoginContainer>
 
@@ -70,3 +83,9 @@ const LoginContainer = styled.div`
     font-family: 'Lexend Deca', sans-serif;
 
 `;
+
+const Loader = styled.div`
+
+    background-color: transparent;
+
+`; 
