@@ -12,6 +12,8 @@ export default function Today () {
 
     const [habits, setHabits] = useState ([]);
     const [complete, setComplete] = useState (true);
+    const [did, setDid] = useState(0);
+    const [finished, setFinished] = useState(0);
 
     const config = {
 
@@ -50,7 +52,7 @@ export default function Today () {
             const { id, name, days } = habit;
             return (
                 <>
-                    <TodayHabit id={id} name={name} days={days} onClick={() => {click()}}/>
+                    <TodayHabit id={id} name={name} days={days} onClick={() => click()}/>
                 </>
             );
           });
@@ -71,9 +73,14 @@ export default function Today () {
                 < TodayDate/>
                 {complete ? (
                     <NoConcludedHabits>Nenhum hábito concluído ainda</NoConcludedHabits>
-                ) : (<ConcludedHabits>{}% dos hábitos concluídos</ConcludedHabits>)}
+                ) : (<ConcludedHabits>{did}% dos hábitos concluídos</ConcludedHabits>)}
             <TodayContainer>
-                <HabitList>{showHabits()}</HabitList>
+                <HabitList onClick={() => {
+                        click();
+                        setFinished(finished + 1);
+                        setDid((finished/habits.length) * 100);
+                    }}>{showHabits()}
+                </HabitList>
             </TodayContainer>
             <Footer />
         </>

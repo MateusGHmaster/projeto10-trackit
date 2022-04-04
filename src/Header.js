@@ -4,10 +4,10 @@ import './components/Header.css';
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 
-export default function Header (props) {
+export default function Header (/* props */) {
     
     const navigate = useNavigate();
-    const profilePicture = props.picture;
+    /* const profilePicture = props.picture; */
 
     return (
 
