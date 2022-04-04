@@ -5,11 +5,13 @@ import TodayHabit from "./TodayHabit";
 import TodayDate from "./TodayDate";
 import { useState } from "react";
 import { useEffect } from "react";
+import LoadingSpin from "react-loading-spin";
 import axios from "axios";
 
 export default function Today () {
 
     const [habits, setHabits] = useState ([]);
+    const [complete, setComplete] = useState (true);
 
     const config = {
 
@@ -37,6 +39,10 @@ export default function Today () {
 
     }
 
+    function click () {
+        setComplete(!complete);
+    }
+
     function showHabits () {
 
         if(habits.length > 0) {
@@ -44,12 +50,17 @@ export default function Today () {
             const { id, name, days } = habit;
             return (
                 <>
-                    <TodayHabit id={id} name={name} days={days} />
+                    <TodayHabit id={id} name={name} days={days} onClick={() => {click()}}/>
                 </>
             );
           });
         }
-        return <p className={'no-habits'}>Você não tem nenhum hábito cadastrado. Adicione um hábito para começar a trackear!</p>;
+        return (
+            <WaitingTodayHabits>
+                <p className={'no-habits'}>Você não tem nenhum hábito cadastrado. Adicione um hábito para começar a trackear!</p>
+                <LoadingSpin primaryColor={'#FFFFFF'} secondaryColor={'transparent'} size={'35px'} width={10} />
+            </WaitingTodayHabits>
+        );
 
     }
 
@@ -58,8 +69,9 @@ export default function Today () {
         <>
             <Header />
                 < TodayDate/>
-                <ConcludedHabits>Nenhum hábito concluído ainda</ConcludedHabits>
-    
+                {complete ? (
+                    <NoConcludedHabits>Nenhum hábito concluído ainda</NoConcludedHabits>
+                ) : (<ConcludedHabits>{}% dos hábitos concluídos</ConcludedHabits>)}
             <TodayContainer>
                 <HabitList>{showHabits()}</HabitList>
             </TodayContainer>
@@ -79,7 +91,7 @@ const TodayContainer = styled.div`
 
 `; 
 
-const ConcludedHabits = styled.div`
+const NoConcludedHabits = styled.div`
 
     margin-left: 15px;
     width: 278px;
@@ -92,11 +104,34 @@ const ConcludedHabits = styled.div`
 
 `;
 
+const ConcludedHabits = styled.div`
+
+    margin-left: 15px;
+    width: 278px;
+    height: 22px;
+
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 18px;
+
+    color: green;
+
+`;
+
 const HabitList = styled.div`
 
     
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+`;
+
+const WaitingTodayHabits = styled.div`
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
 
 `;

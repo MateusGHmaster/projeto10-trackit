@@ -1,4 +1,5 @@
 import appName from './components/TrackIt.png';
+import profile from './components/profile.png'
 import './components/Header.css';
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,7 @@ export default function Header (props) {
                 <img className={'top-bar-name'} src={appName} alt={'top-bar-name'} onClick={() => navigate('/today')}/>
             </TopBarAppName>
             <UserPicture>
-                <img className={'user-pic'} src={profilePicture} alt={'user-profile'}/>
+                <img className={'user-pic'} src={profile} alt={'user-profile'}/>
             </UserPicture>
         </HeaderContainer>
 
@@ -56,6 +57,6 @@ const UserPicture = styled.div`
     border-radius: 100%;
     width: 51px;
     height: 51px;
-    background-color: green;
+    background-color: white;
 
 `;
