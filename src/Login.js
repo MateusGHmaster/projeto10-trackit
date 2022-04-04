@@ -7,7 +7,6 @@ import Logo from "./Logo";
 import Input from "./Input";
 import Button from "./Button";
 import styled from "styled-components";
-import useAuth from "./providers/useAuth";
 
 export default function Login () {
     
@@ -15,8 +14,9 @@ export default function Login () {
 
     const [email, setEmail] = useState ('');
     const [password, setPassword] = useState ('');
-    const { auth } = useAuth();
+    const [picture, setPicture] = useState({});
     const [loading, setLoading] = useState(false);
+    console.log(picture);
     
     function refreshPage() {
         window.location.reload(false);
@@ -29,6 +29,7 @@ export default function Login () {
             setLoading(false);
             const {data} = response;
             localStorage.setItem('trackItToken', data.token);
+            setPicture(data.image);
             navigate ('/today');
         });
         promise.catch (response => {
@@ -46,7 +47,7 @@ export default function Login () {
             <Input type={'text'} placeholder={'email'} value={email} onChange={(e) => setEmail(e.target.value)} />
             <Input type={'password'} placeholder={'senha'} value={password} onChange={(e) => setPassword(e.target.value)} />
             <Button onClick={login}>
-                {loading ? (<LoadingSpin primaryColor={'#FFFFFF'} secondaryColor={'transparent'} size={'35px'} width={8} />
+                {loading ? (<LoadingSpin primaryColor={'#FFFFFF'} secondaryColor={'transparent'} size={'35px'} width={10} />
                     ) : (
                         'Entrar'        
                     ) 
@@ -83,9 +84,3 @@ const LoginContainer = styled.div`
     font-family: 'Lexend Deca', sans-serif;
 
 `;
-
-const Loader = styled.div`
-
-    background-color: transparent;
-
-`; 

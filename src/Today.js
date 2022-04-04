@@ -57,8 +57,6 @@ export default function Today () {
 
         <>
             <Header />
-            
-                {/* <TodayInfo>Segunda, 04/04</TodayInfo> */}
                 < TodayDate/>
                 <ConcludedHabits>Nenhum hábito concluído ainda</ConcludedHabits>
     
@@ -80,20 +78,6 @@ const TodayContainer = styled.div`
     padding-right 31px:
 
 `; 
-
-const TodayInfo = styled.div`
-
-    margin-top: 100px;
-    margin-left: 15px;
-    width: 250px;
-    height: 29px;
-
-    font-family: 'Lexend Deca', sans-serif;
-    font-size: 23px;
-
-    color: #126BA5;
-
-`;  
 
 const ConcludedHabits = styled.div`
 
