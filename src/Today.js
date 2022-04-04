@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Header from "./Header";
 import Footer from "./Footer";
 import TodayHabit from "./TodayHabit";
-import Date from "./Date";
+import TodayDate from "./TodayDate";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
@@ -60,7 +60,8 @@ export default function Today () {
         <>
             <Header />
             <section>
-                <TodayDate>Segunda, 04/04</TodayDate>
+                {/* <TodayDate/> */}
+                <TodayInfo>Segunda, 04/04</TodayInfo>
                 <ConcludedHabits>Nenhum hábito concluído ainda</ConcludedHabits>
             </section>
             <TodayContainer>
@@ -82,7 +83,7 @@ const TodayContainer = styled.div`
 
 `;
 
-const TodayDate = styled.div`
+const TodayInfo = styled.div`
 
     margin-top: 100px;
     margin-left: 15px;
@@ -94,7 +95,7 @@ const TodayDate = styled.div`
 
     color: #126BA5;
 
-`;
+`;  
 
 const ConcludedHabits = styled.div`
 

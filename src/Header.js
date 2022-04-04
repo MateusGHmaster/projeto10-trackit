@@ -1,11 +1,13 @@
 import appName from './components/TrackIt.png';
+import axios from 'axios';
 import './components/Header.css';
 
 import styled from "styled-components";
+import { useState } from 'react';
 
 export default function Header () {
     
-    
+    const [userPic, setUserPic] = useState ('');
     
     return (
 

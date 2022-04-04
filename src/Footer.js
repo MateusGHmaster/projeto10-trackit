@@ -1,4 +1,5 @@
 import { CircularProgressbar } from 'react-circular-progressbar';
+import { buildStyles } from 'react-circular-progressbar';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './components/Footer.css';
