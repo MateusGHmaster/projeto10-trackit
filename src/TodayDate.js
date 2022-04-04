@@ -1,11 +1,12 @@
-import dayjs from "dayjs";
+import * as dayjs from 'dayjs';
+import 'dayjs/locale/pt-br';
 
 export default function TodayDate() {
 
     let date = dayjs().date();
     let month = dayjs().month();
     let weekDay = dayjs().day();
-    let dayName = dayjs(weekDay);
+    let dayName = dayjs(weekDay).locale('pt-br');
 
     if (date < 10) {
 
