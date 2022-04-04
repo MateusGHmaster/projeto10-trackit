@@ -57,11 +57,11 @@ export default function Today () {
 
         <>
             <Header />
-            <section>
-                {/* <TodayDate/> */}
-                <TodayInfo>Segunda, 04/04</TodayInfo>
+            
+                {/* <TodayInfo>Segunda, 04/04</TodayInfo> */}
+                < TodayDate/>
                 <ConcludedHabits>Nenhum hábito concluído ainda</ConcludedHabits>
-            </section>
+    
             <TodayContainer>
                 <HabitList>{showHabits()}</HabitList>
             </TodayContainer>
@@ -79,7 +79,7 @@ const TodayContainer = styled.div`
     padding-top: 31px;
     padding-right 31px:
 
-`;
+`; 
 
 const TodayInfo = styled.div`
 
