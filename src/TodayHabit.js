@@ -1,11 +1,20 @@
 import './components/TodayHabit.css';
 import styled from "styled-components";
+import axios from 'axios';
 import { useState } from 'react';
 
 export default function TodayHabit (props) {
     
     const [concluded, setConcluded] = useState(false);
-    let [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
+    const [sequence, setSequence] = useState(0);
+    const [max, setMax] = useState(0);
+
+    const config = {
+
+        headers: { Authorization: `Bearer ${localStorage.getItem('trackItToken')}` }
+
+    };
 
     return (
 
@@ -14,16 +23,45 @@ export default function TodayHabit (props) {
                 <p className={'habit-title'}>{props.name}</p>
             </section>
             <Streak>
-                <p>Sequência atual:  dias</p>
-                <p>Seu recorde:  dias</p>
+                <p>Sequência atual: {sequence} dias</p>
+                <p>Seu recorde: {max} dias</p>
             </Streak>
             <CheckList className={`check ${concluded ? 'checked' : ''}`} onClick={() => {
                     setConcluded(!concluded);
-                    concluded ? (
-                            setCount(count -= 1)
-                        ) : (
-                            setCount(count += 1)
-                    );
+                    if (concluded === false) {
+                        
+                        const check = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props.id}/check`,
+                        {id: props.id}, config);
+                        check.then((response) => {
+                            console.log('Foi!');
+                            const { data } = response;
+                            console.log(data);
+                        });
+                        check.catch((err) =>{
+                            console.log(err);
+                        });
+                        
+                        setCount(count + 1);
+                        setSequence(sequence + 1);
+                        if (max === sequence) {
+                            setMax(max + 1);
+                        }
+                    } else {
+
+                        const uncheck = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props.id}/check`,
+                        {id: props.id}, config);
+                        uncheck.then((response) => {
+                            console.log('Foi!');
+                            const { data } = response;
+                            console.log(data);
+                        });
+                        uncheck.catch((err) =>{
+                            console.log(err);
+                        });
+
+                        setCount(count - 1);
+                        setSequence(0);
+                    }
                     console.log(count);
                 }}>
                     <Check>✓</Check>
